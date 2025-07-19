@@ -22,9 +22,7 @@ import androidx.compose.material.icons.automirrored.rounded.List
 import androidx.compose.material.icons.rounded.CalendarToday
 import androidx.compose.material.icons.rounded.Event
 import androidx.compose.material.icons.rounded.Inbox
-import androidx.compose.material.icons.rounded.List
 import androidx.compose.material.icons.rounded.MoreHoriz
-import androidx.compose.material3.Divider
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -37,6 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -57,6 +56,9 @@ import com.wisnu.kurniawan.composetodolist.foundation.uicomponent.PgEmpty
 import com.wisnu.kurniawan.composetodolist.foundation.uicomponent.PgIcon
 import com.wisnu.kurniawan.composetodolist.foundation.uicomponent.PgIconButton
 import com.wisnu.kurniawan.composetodolist.foundation.uicomponent.SwipeDismiss
+import com.wisnu.kurniawan.composetodolist.testtags.MainTestTags.MAIN_LAZY_COLUMN
+import com.wisnu.kurniawan.composetodolist.testtags.MainTestTags.MAIN_LAZY_ROW
+import com.wisnu.kurniawan.composetodolist.testtags.MainTestTags.mainCellsBlock
 
 @Composable
 fun ToDoMainScreen(
@@ -76,12 +78,14 @@ fun ToDoMainScreen(
     onClickAllTask: () -> Unit,
 ) {
     LazyColumn(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize()
+            .testTag(MAIN_LAZY_COLUMN),
     ) {
         item {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier
+                    .testTag(MAIN_LAZY_ROW)
                     .fillMaxWidth()
                     .padding(start = 16.dp, end = 16.dp, bottom = 16.dp, top = 8.dp)
             ) {
@@ -179,7 +183,7 @@ private fun ScheduledTodayCell(
     isSelected: Boolean
 ) {
     OverallTaskCell(
-        modifier = modifier,
+        modifier = modifier.testTag(mainCellsBlock(R.string.todo_today)),
         taskCount = scheduledTaskCount,
         title = stringResource(R.string.todo_today),
         iconText = currentDate,
@@ -198,7 +202,7 @@ private fun ScheduledCell(
     isSelected: Boolean
 ) {
     OverallTaskCell(
-        modifier = modifier,
+        modifier = modifier.testTag(mainCellsBlock(R.string.todo_scheduled)),
         taskCount = scheduledTaskCount,
         title = stringResource(R.string.todo_scheduled),
         icon = Icons.Rounded.Event,

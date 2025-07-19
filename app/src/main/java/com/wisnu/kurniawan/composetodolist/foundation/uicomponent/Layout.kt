@@ -20,7 +20,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
+import com.wisnu.kurniawan.composetodolist.testtags.MainTestTags.MAIN_SCREEN
 
 @Composable
 fun PgPageLayout(
@@ -31,6 +33,7 @@ fun PgPageLayout(
 ) {
     Column(
         modifier = modifier
+            .testTag(MAIN_SCREEN)
             .statusBarsPadding()
             .navigationBarsPadding(),
         verticalArrangement = verticalArrangement,

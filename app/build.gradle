@@ -80,7 +80,7 @@ android {
         }
 
         variant.mergedFlavor.manifestPlaceholders = [
-                APP_NAME   : appName,
+                APP_NAME: appName,
         ]
     }
 
@@ -244,7 +244,15 @@ dependencies {
     releaseImplementation libs.wisnu.foundation.test.debugnoop
     benchmarkImplementation libs.wisnu.foundation.test.debugnoop
 
-
+    ///////////////
+    // UI TEST
+    //////
+    androidTestImplementation(libs.kaspresso)
+    androidTestImplementation(libs.kaspresso.compose)
+    androidTestImplementation(libs.kaspresso)
+    androidTestImplementation(libs.kaspresso.allure)
+    androidTestImplementation(libs.kakaocup.compose)
+    androidTestImplementation(libs.androidx.ui.test.junit4.android)
     ///////////////
     // UNIT TEST SUPPORT
     //////
